@@ -1,21 +1,18 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-function Home() {
-  return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-700">
-        Campus Resource Hub
-      </h1>
-    </div>
-  )
-}
+import Navbar from './components/Navbar.jsx'
+import Home from './pages/Home.jsx'
+import About from "./pages/About";
+import Courses from './pages/Courses.jsx'
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   )
