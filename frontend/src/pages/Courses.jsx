@@ -1,4 +1,5 @@
 
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   GraduationCap,
@@ -7,6 +8,7 @@ import {
   BriefcaseBusiness,
   Calculator,
   ArrowRight,
+  ArrowDown,
   BookOpen,
   Clock3,
   Sparkles,
@@ -146,21 +148,18 @@ function ComingSoonCard({ course }) {
 }
 
 export default function Courses() {
+  const catalogueRef = useRef(null);
+
   return (
     <main className="min-h-screen bg-white">
 
       {/* PAGE HERO */}
-      <section className="relative overflow-hidden bg-linear-to-br from-blue-50 via-white to-indigo-50 px-6 py-20 sm:py-24">
-
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl" />
-
-        <div className="relative mx-auto max-w-3xl text-center">
-
-          
+      <section className="courses-hero animated-gradient-hero relative overflow-hidden px-6 py-16 sm:py-20">
+        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
 
           <h1 className="mt-7 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Explore Your
-            <span className="block text-blue-600">
+            <span className="block bg-linear-to-r from-blue-700 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
               Courses.
             </span>
           </h1>
@@ -183,12 +182,33 @@ export default function Courses() {
             </span>
           </div>
 
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() =>
+                catalogueRef.current?.scrollIntoView({
+                  behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "auto"
+                    : "smooth",
+                  block: "start",
+                })
+              }
+              className="courses-hero-button inline-flex items-center gap-2 rounded-full bg-blue-700 px-7 py-3.5 font-semibold text-white shadow-lg shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700 motion-reduce:animate-none"
+            >
+              Click Me
+              <ArrowDown size={18} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </section>
       
 
 {/* COURSE CATALOGUE */}
-<section className="mx-auto max-w-7xl px-6 py-20">
+<section
+  id="course-catalogue"
+  ref={catalogueRef}
+  className="scroll-mt-2 mx-auto max-w-7xl px-6 py-20"
+>
 
   {/* Section heading */}
   <div className="mb-12 text-center">

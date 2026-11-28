@@ -1,5 +1,95 @@
 @import "tailwindcss";
 
+@keyframes about-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes about-orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2rem, 1.5rem, 0) scale(1.12);
+  }
+}
+
+@keyframes courses-button-ping-pong {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.75rem);
+  }
+}
+
+.courses-hero {
+  display: grid;
+  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
+  place-items: center;
+}
+
+.courses-hero-button {
+  animation: courses-button-ping-pong 1.2s ease-in-out infinite;
+}
+
+.animated-gradient-hero {
+  isolation: isolate;
+  background: linear-gradient(
+    125deg,
+    #dbeafe 0%,
+    #f8fbff 28%,
+    #e0e7ff 58%,
+    #fce7f3 82%,
+    #ede9fe 100%
+  );
+  background-size: 280% 280%;
+  animation: about-gradient-shift 14s ease-in-out infinite;
+}
+
+.animated-gradient-hero::before,
+.animated-gradient-hero::after {
+  position: absolute;
+  z-index: 0;
+  width: clamp(22rem, 42vw, 38rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  content: "";
+  filter: blur(56px);
+  opacity: 0.62;
+  pointer-events: none;
+  animation: about-orb-drift 11s ease-in-out infinite;
+}
+
+.animated-gradient-hero::before {
+  top: -50%;
+  left: -14%;
+  background: radial-gradient(circle, #60a5fa 0%, #93c5fd 36%, transparent 72%);
+}
+
+.animated-gradient-hero::after {
+  right: -14%;
+  bottom: -65%;
+  background: radial-gradient(circle, #a78bfa 0%, #c4b5fd 36%, transparent 72%);
+  animation-delay: -7s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-gradient-hero,
+  .animated-gradient-hero::before,
+  .animated-gradient-hero::after {
+    animation: none;
+  }
+}
+
 @keyframes navbar-enter {
   from {
     opacity: 0;

@@ -77,17 +77,16 @@ export default function About() {
     <main className="bg-white">
 
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-linear-to-br from-blue-50 via-white to-indigo-50 px-6 py-20 sm:py-28">
+      <section className="animated-gradient-hero relative overflow-hidden px-6 py-20 sm:py-28">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm shadow-blue-900/5 backdrop-blur-md">
+            <BookOpen size={16} aria-hidden="true" />
+            <span>Your campus, one resource hub</span>
+          </div>
 
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl" />
-
-        <div className="relative mx-auto max-w-4xl text-center">
-
-          
-
-          <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Making Learning Resources
-            <span className="block text-blue-600">
+            <span className="block bg-linear-to-r from-blue-700 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
               Accessible to Everyone.
             </span>
           </h1>
@@ -99,10 +98,10 @@ export default function About() {
             previous-year question papers and video lectures easily.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4 ">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               to="/courses"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-700"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/25 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30"
             >
               Explore Courses
               <ArrowRight size={18} />

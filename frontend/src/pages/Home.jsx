@@ -6,7 +6,6 @@ import {
   BookOpen,
   FileText,
   GraduationCap,
-  Sparkles,
 } from "lucide-react";
 
 const Hero = () => {

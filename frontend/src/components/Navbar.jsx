@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const underlineClasses =
@@ -8,11 +8,6 @@ const underlineClasses =
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { pathname, hash } = useLocation()
-  const homeIsActive = pathname === '/'
-  const exploreIsActive = pathname === '/courses'
-  const aboutIsActive = pathname === '/about'
-  const connectIsActive = pathname === '/connect' || hash === '#connect'
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -22,8 +17,9 @@ function Navbar() {
         aria-label="Main navigation"
         className="mx-auto flex min-h-18 max-w-8xl items-center justify-between px-5 py-3 sm:px-8 lg:px-10"
       >
-        <Link
+        <NavLink
           to="/"
+          end
           aria-label="Campus Resource Hub home"
           onClick={closeMenu}
           className="shrink-0 rounded-lg transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700 motion-reduce:transition-none"
@@ -33,37 +29,34 @@ function Navbar() {
             alt="Campus Resource Hub"
             className="h-10 w-auto scale-280 sm:h-12"
           />
-        </Link>
+        </NavLink>
 
         <div className="hidden items-center gap-1 md:flex">
-          <Link
+          <NavLink
             to="/"
-            aria-current={homeIsActive ? 'page' : undefined}
-            className={`${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${homeIsActive ? 'after:scale-x-100' : ''}`}
+            end
+            className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/courses"
-            aria-current={exploreIsActive ? 'page' : undefined}
-            className={`${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${exploreIsActive ? 'after:scale-x-100' : ''}`}
+            className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
           >
-            Explore
-          </Link>
-          <Link
+            Courses
+          </NavLink>
+          <NavLink
             to="/about"
-            aria-current={aboutIsActive ? 'page' : undefined}
-            className={`${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${aboutIsActive ? 'after:scale-x-100' : ''}`}
+            className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-full px-4 py-2 text-md font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
           >
             About
-          </Link>
-          <a
-            href="#connect"
-            aria-current={connectIsActive ? 'page' : undefined}
-            className={`${underlineClasses} ml-3 inline-flex items-center justify-center rounded-full bg-blue-800 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-900/15 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-900 hover:shadow-lg hover:shadow-blue-900/20 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-blue-700 active:translate-y-0 motion-reduce:transition-none ${connectIsActive ? 'after:scale-x-100' : ''}`}
+          </NavLink>
+          <NavLink
+            to="/connect"
+            className={({ isActive }) => `${underlineClasses} ml-3 inline-flex items-center justify-center rounded-full bg-blue-800 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-900/15 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-900 hover:shadow-lg hover:shadow-blue-900/20 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-blue-700 active:translate-y-0 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
           >
             Connect Us
-          </a>
+          </NavLink>
         </div>
 
         <button
@@ -86,38 +79,35 @@ function Navbar() {
       >
         <div className="overflow-hidden">
           <div className="flex flex-col gap-1 border-t border-slate-100 px-5 pb-5 pt-3 sm:px-8">
-            <Link
+            <NavLink
               to="/"
+              end
               onClick={closeMenu}
-              aria-current={homeIsActive ? 'page' : undefined}
-              className={`${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${homeIsActive ? 'after:scale-x-100' : ''}`}
+              className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/courses"
               onClick={closeMenu}
-              aria-current={exploreIsActive ? 'page' : undefined}
-              className={`${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${exploreIsActive ? 'after:scale-x-100' : ''}`}
+              className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
             >
               Explore
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/about"
               onClick={closeMenu}
-              aria-current={aboutIsActive ? 'page' : undefined}
-              className={`${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${aboutIsActive ? 'after:scale-x-100' : ''}`}
+              className={({ isActive }) => `${underlineClasses} inline-flex items-center rounded-xl px-4 py-3 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
             >
               About
-            </Link>
-            <a
-              href="#connect"
+            </NavLink>
+            <NavLink
+              to="/connect"
               onClick={closeMenu}
-              aria-current={connectIsActive ? 'page' : undefined}
-              className={`${underlineClasses} mt-2 inline-flex items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-base font-semibold text-white shadow-md shadow-blue-900/15 transition duration-200 hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${connectIsActive ? 'after:scale-x-100' : ''}`}
+              className={({ isActive }) => `${underlineClasses} mt-2 inline-flex items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-base font-semibold text-white shadow-md shadow-blue-900/15 transition duration-200 hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 motion-reduce:transition-none ${isActive ? 'after:scale-x-100' : ''}`}
             >
               Connect Us
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>
